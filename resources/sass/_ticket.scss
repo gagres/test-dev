@@ -1,0 +1,28 @@
+.ticket {
+    position: relative;
+    width: 50%;
+    min-height: 300px;
+    padding: 2.5% 5% 2.5% 5%;
+
+    .btn-back {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 10%;
+    }
+
+    .form-row {
+        margin-top: 20px;
+
+        .invalid-feedback {
+            font-size: 16px;
+        }
+    }
+
+    &-info {
+        position: relative;
+        width: 50%;
+        min-height: 300px;
+        padding: 2.5% 5% 2.5% 5%;
+    }
+}
