@@ -17,40 +17,28 @@ class TicketSeeder extends Seeder
         DB::beginTransaction();
         try {
             Ticket::create([
-                    'title' => Str::random(10),
-                    'content' => Str::random(10),
-                    'order_number' => 1003,
-                    'client_id' => 1
+                'title' => Str::random(10),
+                'content' => Str::random(10)
             ]);
             Ticket::create([
                 'title' => Str::random(10),
-                'content' => Str::random(10),
-                'order_number' => 1003,
-                'client_id' => 1
+                'content' => Str::random(10)
             ]);
             Ticket::create([
                 'title' => Str::random(10),
-                'content' => Str::random(10),
-                'order_number' => 1004,
-                'client_id' => 1
+                'content' => Str::random(10)
             ]);
             Ticket::create([
                 'title' => Str::random(10),
-                'content' => Str::random(10),
-                'order_number' => 1005,
-                'client_id' => 2
+                'content' => Str::random(10)
             ]);
             Ticket::create([
-                    'title' => Str::random(10),
-                    'content' => Str::random(10),
-                    'order_number' => 1006,
-                    'client_id' => 3
+                'title' => Str::random(10),
+                'content' => Str::random(10)
             ]);
             Ticket::create([
-                    'title' => Str::random(10),
-                    'content' => Str::random(10),
-                    'order_number' => 1007,
-                    'client_id' => 2
+                'title' => Str::random(10),
+                'content' => Str::random(10)
             ]);
             DB::commit();
         } catch(\Exception $e) {

@@ -8,12 +8,11 @@ class Ticket extends Model
 {
     protected $fillable = [
         'client_id',
-        'order_number',
         'title',
         'content'
     ];
 
-    public function client() {
-        return $this->belongsTo(Client::class);
+    public function order() {
+        return $this->hasOne(Order::class);
     }
 }

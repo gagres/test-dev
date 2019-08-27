@@ -18,17 +18,14 @@ class ClientSeeder extends Seeder
 
         try {
             Client::create([
-                'id' => 1,
                 'name' => Str::random(10),
                 'email' => 'test1@email.com'
             ]);
             Client::create([
-                'id' => 2,
                 'name' => Str::random(10),
                 'email' => 'test2@email.com'
             ]);
             Client::create([
-                'id' => 3,
                 'name' => Str::random(10),
                 'email' => 'test3@email.com'
             ]);

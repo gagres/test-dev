@@ -43,19 +43,19 @@
                 </tr>
             </thead>
             <tbody>
-                @if ($tickets->count())
-                    @foreach($tickets as $ticket)
+                @if ($orders->count())
+                    @foreach($orders as $order)
                         <tr>
-                            <td scope="row">{{ $ticket->id }}</td>
-                            <td>{{ $ticket->order_number }}</td>
-                            <td>{{ $ticket->title }}</td>
+                            <td scope="row">{{ $order->ticket->id }}</td>
+                            <td>{{ $order->id }}</td>
+                            <td>{{ $order->ticket->title }}</td>
                             <td>
-                                <a href="/?client_email={{ $ticket->client->email }}">
-                                    {{ $ticket->client->email }}
+                                <a href="/?client_email={{ $order->client->email }}">
+                                    {{ $order->client->email }}
                                 </a>
                             </td>
-                            <td>{{ $ticket->created_at }}</td>
-                            <td><a href="/tickets/{{ $ticket->id }}">Ver mais</a></td>
+                            <td>{{ $order->ticket->created_at }}</td>
+                            <td><a href="/tickets/{{ $order->ticket->id }}">Ver mais</a></td>
                         </tr>
                     @endforeach
                 @else
@@ -67,6 +67,6 @@
                 @endif
             </tbody>
         </table>
-        {{ $tickets->appends(request()->input())->links() }}
+        {{ $orders->appends(request()->input())->links() }}
     </div>
 @endsection

@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         request()->flashOnly(['client_email', 'order_number']);
         $attributes = request()->all();
-        $tickets = $this->ticketService->getTickets($attributes);
-        return view('index', compact('tickets'));
+        $orders = $this->ticketService->getTickets($attributes);
+        return view('index', compact('orders'));
     }
 }

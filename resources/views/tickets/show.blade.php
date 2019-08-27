@@ -9,7 +9,8 @@
                 <hr/>
             </h1>
             <p>{{ $ticket->content }}</p>
-            <p><b>Clinte: </b>{{ $ticket->client->name }}</p>
+            <p><b>Número do pedido: </b>{{ $ticket->order->id }}</p>
+            <p><b>Clinte: </b>{{ $ticket->order->client->name }}</p>
             <p><b>Data de criação: </b>{{ $ticket->created_at }}</p>
             <p><b>Última atualização: </b>{{ $ticket->updated_at }}</p>
         @endif

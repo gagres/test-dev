@@ -6,14 +6,17 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Ticket;
 use App\Client;
+use App\Order;
 
 class TicketService {
     private $ticketModel;
     private $clientModel;
+    private $orderModel;
 
-    public function __construct(Ticket $ticketModel, Client $clientModel) {
+    public function __construct(Ticket $ticketModel, Client $clientModel, Order $orderModel) {
         $this->ticketModel = $ticketModel;
         $this->clientModel = $clientModel;
+        $this->orderModel = $orderModel;
     }
 
     public function getTicket($id) {
@@ -21,20 +24,20 @@ class TicketService {
     }
 
     public function getTickets($attributes) {
-        $ticketsQuery = $this->ticketModel->query();
-        // Filter client by email if receives from request
+        $orderQuery = $this->orderModel->query();
+        // Filter order by client_email if receives from request
         if (!empty($attributes['client_email'])) {
-            $ticketsQuery = $ticketsQuery->whereHas('client', function ($query) use ($attributes) {
+            $orderQuery = $orderQuery->whereHas('client', function ($query) use ($attributes) {
                 // Check if the client_email of the ticket is the same of the request
                 $query->where('email', $attributes['client_email']);
             });
         }
-        // Filter tickets by order_number if receives from request
+        // Filter orders by order_number if receives from request
         if (!empty($attributes['order_number'])) {
-            $ticketsQuery = $ticketsQuery->where('order_number',  $attributes['order_number']);
+            $orderQuery = $orderQuery->where('id',  $attributes['order_number']);
         }
 
-        return $ticketsQuery->simplePaginate(5);
+        return $orderQuery->simplePaginate(5);
     }
 
     public function createNewTicket($attributes) {
@@ -54,26 +57,30 @@ class TicketService {
                 $clientId = $client->id;
             }
 
+
             // Check if ticket already exists
-            $ticketFound = $this->ticketModel->where('order_number', $attributes['order_number'])->first();
+            $orderFound = $this->orderModel->where('id', $attributes['order_number'])->first();
 
             // If ticket exists and belongs to another user, return a message
-            if (!empty($ticketFound) && $ticketFound->client_id != $clientId) {
+            if (!empty($orderFound) && $orderFound->client->id != $clientId) {
                 return ['warning' => 'O número do pedido informado ja pertence a outro usuário'];
             }
 
             // If ticket not exists, creates one
-            if (empty($ticketFound)) {
-                $this->ticketModel->create([
+            if (empty($orderFound)) {
+                $ticketId = $this->ticketModel->create([
                     'title' => $attributes['title'],
-                    'content' => $attributes['content'],
-                    'order_number' => $attributes['order_number'],
+                    'content' => $attributes['content']
+                ])->id;
+                $this->orderModel->create([
+                    'id' => $attributes['order_number'],
                     'client_id' => $clientId,
+                    'ticket_id' => $ticketId
                 ]);
             } else {
-                $ticketFound->title = $attributes['title'];
-                $ticketFound->content = $attributes['content'];
-                $ticketFound->save();
+                $orderFound->ticket->title = $attributes['title'];
+                $orderFound->ticket->content = $attributes['content'];
+                $orderFound->ticket->save();
             }
 
             DB::commit();
