@@ -3,10 +3,12 @@
 ## Objetivo:
 Desenvolver uma ferramenta simples de cadastro de tickets para o setor de atendimento ao cliente da empresa.
 
-## Requisitos:
-- Você deve fazer o fork desse projeto no seu repositório;
-- Utilizar: Docker, Laravel 5.x e MySQL;
-- Devem ser criadas migrations de 3 tabelas relacionadas;
+|Tech|version|
+|---|---|
+|PHP|>7.3|
+|Laravel|>5.8|
+|postgres|10.4|
+
 
 ## Escopo:
 ### 1. Criar uma tela de cadastro de tickets, onde:
@@ -43,3 +45,13 @@ Desenvolver uma ferramenta simples de cadastro de tickets para o setor de atendi
 		- E-mail do cliente;
 		- Data de criação do ticket;
 - Criar tela de visualização de detalhe do ticket com todos os campos da tabela de tickets
+
+## Inicializando o projeto
+Para inicializar o projeto, você deve executar o comando em seu terminal de preferência
+```
+docker-compose up -d
+```
+
+Após finalizar de subir os containers, você deve acessar o container do php através do comando `docker-compose exec php sh` e executar o arquivo **init.sh** (`/etc/init.sh`).
+
+Feito isso, a aplicação deverá estar rodando normalmente, com acesso na porta 8000 do localhost

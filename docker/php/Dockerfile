@@ -32,15 +32,10 @@ RUN docker-php-ext-install pdo pdo_pgsql pgsql zip
 RUN curl --silent --show-error https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
+COPY docker/php/init.sh /etc
+
+RUN chmod +x /etc/init.sh
+
 RUN cp .docker.env .env
 
 RUN composer install
-
-RUN chown -R www-data:www-data storage bootstrap/cache \
-    && chmod -R 755 storage bootstrap/cache
-
-RUN php artisan key:generate \
-    && php artisan config:clear \
-    && php artisan cache:clear
-    # && php artisan migrate \
-    # && php artisan db:seed

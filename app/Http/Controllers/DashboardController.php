@@ -16,8 +16,10 @@ class DashboardController extends Controller
 
     public function index()
     {
+        // Return client_email and order_number to form of index again
         request()->flashOnly(['client_email', 'order_number']);
         $attributes = request()->all();
+        // Get all tickets using attributes to filter them
         $orders = $this->ticketService->getTickets($attributes);
         return view('index', compact('orders'));
     }

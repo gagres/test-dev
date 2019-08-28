@@ -25,10 +25,12 @@ class TicketsController extends Controller
         $attributes = $request->all();
         $response = $this->ticketService->createNewTicket($attributes);
 
+        // Check if the response of create new ticket action was success and return a blank page of create a new one
         if (!empty($response['success'])) {
             return redirect('/tickets/create')->with($response);
         }
 
+        // Otherwise return the page of ticket creation with older inputs and error messages
         return back()->with($response)->withInput($attributes);
     }
 
