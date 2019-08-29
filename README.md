@@ -1,5 +1,14 @@
 # Teste PHP para Desenvolvedor
 
+## Requisitos
+|Tech|version|
+|---|---|
+|PHP|>7.3|
+|Laravel|>5.8|
+|postgres|10.4|
+|docker|>18|
+|docker-compose|>1.23|
+
 ## Inicializando o projeto
 Para inicializar o projeto, você deve executar o comando em seu terminal de preferência
 ```
@@ -15,13 +24,6 @@ A query se encontra [neste arquivo](desafio_sql.sql)
 
 ## Objetivo:
 Desenvolver uma ferramenta simples de cadastro de tickets para o setor de atendimento ao cliente da empresa.
-
-|Tech|version|
-|---|---|
-|PHP|>7.3|
-|Laravel|>5.8|
-|postgres|10.4|
-
 
 ## Escopo:
 ### 1. Criar uma tela de cadastro de tickets, onde:
