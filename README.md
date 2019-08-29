@@ -52,6 +52,6 @@ Para inicializar o projeto, você deve executar o comando em seu terminal de pre
 docker-compose up -d
 ```
 
-Após finalizar de subir os containers, você deve acessar o container do php através do comando `docker-compose exec php sh` e executar o arquivo **init.sh** (`/etc/init.sh`).
+Após finalizar de subir os containers, você deve acessar o container do php através do comando `docker-compose exec php sh` e executar o arquivo **/etc/init.sh**
 
 Feito isso, a aplicação deverá estar rodando normalmente, com acesso na porta 8000 do localhost
