@@ -1,5 +1,18 @@
 # Teste PHP para Desenvolvedor
 
+## Inicializando o projeto
+Para inicializar o projeto, você deve executar o comando em seu terminal de preferência
+```
+docker-compose up -d
+```
+
+Após finalizar de subir os containers, você deve acessar o container do php através do comando `docker-compose exec php sh` e executar o arquivo **/etc/init.sh**
+
+Feito isso, a aplicação deverá estar rodando normalmente, com acesso na porta 8000 do localhost
+
+## MySQL Query - Teste
+A query se encontra [neste arquivo](desafio_sql.sql)
+
 ## Objetivo:
 Desenvolver uma ferramenta simples de cadastro de tickets para o setor de atendimento ao cliente da empresa.
 
@@ -45,13 +58,3 @@ Desenvolver uma ferramenta simples de cadastro de tickets para o setor de atendi
 		- E-mail do cliente;
 		- Data de criação do ticket;
 - Criar tela de visualização de detalhe do ticket com todos os campos da tabela de tickets
-
-## Inicializando o projeto
-Para inicializar o projeto, você deve executar o comando em seu terminal de preferência
-```
-docker-compose up -d
-```
-
-Após finalizar de subir os containers, você deve acessar o container do php através do comando `docker-compose exec php sh` e executar o arquivo **/etc/init.sh**
-
-Feito isso, a aplicação deverá estar rodando normalmente, com acesso na porta 8000 do localhost
